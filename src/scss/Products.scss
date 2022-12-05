@@ -1,0 +1,85 @@
+@import"_flex";
+@import"_variables";
+@import"_grid";
+.products {
+    .container {
+        .product-lists {
+            .img {
+                overflow: hidden;
+
+                img {
+                    max-width: 100%;
+                    transition: 0.3s;
+                    background-color: red;
+
+                    &:hover {
+                        transform: scale(1.2);
+                    }
+                }
+
+                p {
+                    background-color: red;
+                }
+            }
+
+            .item {
+                background-color: white;
+                padding: 10px;
+                text-align: center;
+                color: $bold-grey;
+                transition: 0.4s;
+
+                &:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0px 5px 5px -1px rgba(#333, 0.3);
+                }
+
+                h2.title {
+                    font-size: 16px;
+                }
+
+                .price {
+                    display: block;
+                    margin: 10px 0px;
+                    font-weight: bold;
+                }
+
+                .btn-add {
+                    background-color: $primary;
+                    color: white;
+                    padding: 8px 0px;
+                    width: 95%;
+                    border-radius: 3px;
+                    cursor: pointer;
+                }
+
+                .cart-quantity {
+                    margin: 15px 0;
+
+                    .btn {
+                        width: 22px;
+                        height: 22px;
+                        border-radius: 50%;
+                        font-weight: bold;
+                        border: 1px solid $grey;
+                        cursor: pointer;
+                    }
+
+                    .btn-dec {}
+
+                    .btn-inc {}
+
+                    input {
+                        width: 80px;
+                        border: 1px solid $grey;
+                        text-align: center;
+                        padding: 3px;
+                        font-size: 18px;
+                        margin: 0 10px;
+                    }
+                }
+
+            }
+        }
+    }
+}

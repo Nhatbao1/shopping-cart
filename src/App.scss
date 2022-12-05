@@ -1,0 +1,16 @@
+@import"_flex";
+@import"_variables";
+@import"_grid";
+
+.container {
+    width: 1140px;
+    margin: 0 auto;
+}
+
+.m-5 {
+    margin: 0 5px;
+}
+
+body {
+    background-color: $bgBody;
+}
