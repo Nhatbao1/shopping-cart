@@ -1,13 +1,16 @@
 import "./scss/Header.scss";
 import { BiSearchAlt2 } from "react-icons/bi";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 const Header = () => {
-    const [show, setShow] = useState(true);
+    const [show, setShow] = useState(false);
     const [data, setData] = useState();
-    const nameData = useSelector(state =>state)
-    console.log(nameData)
+    const dataCarts = useSelector(state => state.pay.Carts);
+    useEffect(() => {
+        console.log("check useEffect")
+    }, [show])
+    console.log("check render");
     return (
         <header>
             <div className="container flex a-center j-between">
@@ -37,25 +40,25 @@ const Header = () => {
                                 {data && data.length > 0
                                     ?
                                     <>
-                                        <div class="img">
+                                        <div className="img">
                                             <p>Your cart is empty</p>
-                                            <button class="btn-checkout disabled">PROCEED TO CHECKOUT</button>
+                                            <button className="btn-checkout disabled">PROCEED TO CHECKOUT</button>
                                         </div>
                                         <ul className="cart-item">
                                         </ul>
                                     </>
                                     :
                                     <>
-                                        {/* <div class="img">
-                                            <button class="btn-checkout disabled">PROCEED TO CHECKOUT</button>
+                                        {/* <div className="img">
+                                            <button className="btn-checkout disabled">PROCEED TO CHECKOUT</button>
                                         </div>
                                         <ul className="cart-item">
                                         </ul> */}
                                     </>
                                 }
-                                <div class="img">
+                                <div className="img">
                                     <p>Your cart is empty</p>
-                                    <button class="btn-checkout disabled">PROCEED TO CHECKOUT</button>
+                                    <button className="btn-checkout disabled">PROCEED TO CHECKOUT</button>
                                 </div>
                                 <ul className="cart-item">
                                 </ul>
