@@ -5,12 +5,13 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 const Header = () => {
     const [show, setShow] = useState(false);
-    const [data, setData] = useState();
-    const dataCarts = useSelector(state => state.pay.Carts);
+    const [data, setData] = useState([]);
+    const dataCarts = useSelector(state => state.pay.carts);
     useEffect(() => {
-        console.log("check useEffect")
-    }, [show])
-    console.log("check render");
+        setData(dataCarts)
+        console.log(data)
+    },show)
+    // console.log(data);
     return (
         <header>
             <div className="container flex a-center j-between">
@@ -40,28 +41,31 @@ const Header = () => {
                                 {data && data.length > 0
                                     ?
                                     <>
-                                        <div className="img">
-                                            <p>Your cart is empty</p>
-                                            <button className="btn-checkout disabled">PROCEED TO CHECKOUT</button>
-                                        </div>
-                                        <ul className="cart-item">
+                                        <ul class="cart-item">
+                                            {data.map((val,index)=>{
+                                                return(
+                                                    <li data-id= {val.id}>
+                                                    <img src={val.image}/>
+                                                        <span >{val.price}$</span >
+                                                        <span class="quantity-cart"> No: {val.quantity} </span>
+                                                        <span class="cart-total">{val.price * val.quantity}$</span>
+                                                        <span class="btn-delete"> X </span>
+                                                </li >
+                                                )
+                                            })}
                                         </ul>
+                                        <button className="btn-checkout">PROCEED TO CHECKOUT</button>
+
                                     </>
                                     :
                                     <>
-                                        {/* <div className="img">
+                                        <div className="img">
+                                            {/* <img src="empty-cart.png"> */}
+                                            <p>Yourt cart is empty</p>
                                             <button className="btn-checkout disabled">PROCEED TO CHECKOUT</button>
                                         </div>
-                                        <ul className="cart-item">
-                                        </ul> */}
                                     </>
                                 }
-                                <div className="img">
-                                    <p>Your cart is empty</p>
-                                    <button className="btn-checkout disabled">PROCEED TO CHECKOUT</button>
-                                </div>
-                                <ul className="cart-item">
-                                </ul>
                             </div>
                             :
                             <></>
