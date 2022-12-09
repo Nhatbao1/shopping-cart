@@ -20,7 +20,6 @@ const payReducer = (state = INITIAL_STATE, action) => {
             }else{
                 state.carts[index].quantity+=+action.payload.quantity;
             }
-            console.log(state.carts)
             return {
                 ...state,carts:state.carts,
             }
