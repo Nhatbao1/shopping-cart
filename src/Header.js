@@ -4,7 +4,6 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { NavLink, useNavigate } from "react-router-dom";
 import { AiOutlineShoppingCart, AiOutlineSearch } from "react-icons/ai";
-import "./scss/Header.scss";
 import { useEffect, useState } from 'react';
 const Header = (props) => {
     const nagivate = useNavigate();

@@ -7,11 +7,13 @@ import { useState } from 'react';
 import img from "../../assets/image.png";
 import { all, deleteItem } from '../../redux/action/payAction';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 const Cart = () => {
     const data = useSelector(state => state.pay.carts);
     const [dataClone, setDataClone] = useState(data);
     const [quantity, setQuantity] = useState(0);
     const dispatch = useDispatch();
+    const nagivate = useNavigate();
     let total = 0;
     const handlePay = () => {
         setDataClone("");
@@ -46,7 +48,18 @@ const Cart = () => {
         const index = dataClone.findIndex((val, index) => val.id === prod.id)
         setQuantity(dataClone[index].quantity = +event.target.value);
     }
-    console.log(data)
+    const handleDec = (id) => {
+        const itemIndex = data.findIndex((val, key) => val.id === id)
+        if (data[itemIndex].quantity === 0) {
+            return;
+        } else {
+            setQuantity(data[itemIndex].quantity--)
+        }
+    }
+    const handleInc = (id) => {
+        const itemIndex = data.findIndex((prod) => prod.id === id)
+        setQuantity(data[itemIndex].quantity++)
+    }
     return (
         <Container>
             {dataClone && dataClone.length > 0
@@ -76,16 +89,20 @@ const Cart = () => {
 
                                             </td>
                                             <td>
+                                                <button className=" btn btn-dec" onClick={() => { handleDec(val.id) }}>-</button>
                                                 <input className="input-quantity" type="number"
                                                     value={+val.quantity}
                                                     onChange={(event) => { handleChangeInput(event, val) }}
                                                 />
+                                                <button className="btn btn-inc" onClick={() => { handleInc(val.id) }}  >+</button>
+
 
                                             </td>
                                             <td>{val.name}</td>
                                             <td>{val.quantity * val.price}$</td>
                                             <td className="button-table">
                                                 <button className="btn btn-danger" onClick={() => { handleClickBtnDelete(val) }}>Delete</button>
+
                                             </td>
                                         </tr>
                                     )
@@ -110,6 +127,10 @@ const Cart = () => {
                 :
                 <div className='img-cart'>
                     <img src={img} />
+                    <div className='content-cart'>
+                        <h3>Your Cart Is Empty, Please Go To Shopping !</h3>
+                        <button onClick={()=>nagivate('/product')}>Shopping Now!</button>
+                    </div>
                 </div>
 
             }

@@ -1,3 +1,7 @@
+@import"_flex";
+@import"_variables";
+@import"_grid";
+
 .container {
     table {
         margin-top: 20px;
@@ -20,7 +24,12 @@
               
             }
         }
-
+        .btn{
+            border-radius: 50%;
+            font-weight: bold;
+            border: 1px solid $grey;
+            cursor: pointer;
+        }
         input {
             width: 80px;
             border: 1px solid #999;
@@ -33,31 +42,43 @@
 
     .img-cart {
         height: 80vh;
-
-        img {
-            margin-top: 20px;
-            width: 100%;
-            height: 100%;
-            border-radius: 5px;
-        }
-    }
-}
-
-.modal-view-product {
-    .img-preview {
-        border: 1px dashed #ccc;
-        color: #ccc;
-        border-radius: 5px;
-        height: 200px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
         width: 100%;
-
+        background-color: $bgBody;
+        border-radius: 10px;
+        position: relative;
+        margin-top: 20px;
         img {
-            max-width: 20%;
-            max-height: 100%;
+            top: 35%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            position: absolute;
+            width: 50%;
+            height: 50%;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .content-cart{
+            position: absolute;
+            top: 80%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            text-align: center;
+            h3{
+                padding: 10px 20px;
+                color: $primary;
+            }
+            button{
+                margin-top:20px;
+                padding: 10px 20px;
+                border-radius: 5px;
+                background-color: $secondary;
+                color: white;
+                transition: 0.4s;
+                font-size: 20px;
+                &:hover{
+                    color: black;
+                }
+            }
         }
     }
-
 }
