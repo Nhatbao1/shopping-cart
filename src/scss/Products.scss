@@ -1,31 +1,54 @@
 @import"_flex";
 @import"_variables";
 @import"_grid";
-.products{
-    .container{
-        .product-lists{
+
+.products {
+    .container {
+        .cart-icon {
+            cursor: pointer;
+            position: relative;
+
+            .ball {
+                display: block;
+                width: 24px;
+                height: 24px;
+                border-radius: 50%;
+                background-color: #6bc9e2;
+                color: white;
+                position: absolute;
+                top: 0;
+                left: 100%;
+                text-align: center;
+            }
+        }
+
+        .product-lists {
             display: flex;
             flex-wrap: wrap;
-            .card{
+
+            .card {
                 width: 23%;
                 margin: 10px;
                 overflow: hidden;
+
                 .img {
                     overflow: hidden;
+
                     img {
                         max-width: 100%;
                         transition: 0.3s;
                         background-color: red;
-    
+
                         &:hover {
                             transform: scale(1.1);
                         }
                     }
-    
+
                     p {
                         background-color: red;
                     }
                 }
+
                 .item {
                     background-color: white;
                     // padding: 10px;
@@ -33,21 +56,22 @@
                     color: $bold-grey;
                     transition: 0.4s;
                     width: 100%;
+
                     &:hover {
                         transform: translateY(-2px);
                         box-shadow: 0px 5px 5px -1px rgba(#333, 0.3);
                     }
-    
+
                     h2.title {
                         font-size: 16px;
                     }
-    
+
                     .price {
                         display: block;
                         margin: 10px 0px;
                         font-weight: bold;
                     }
-    
+
                     .btn-add {
                         background-color: $primary;
                         color: white;
@@ -56,10 +80,10 @@
                         border-radius: 3px;
                         cursor: pointer;
                     }
-    
+
                     .cart-quantity {
                         margin: 15px 0;
-    
+
                         .btn {
                             // width: 22px;
                             // height: 22px;
@@ -68,11 +92,11 @@
                             border: 1px solid $grey;
                             cursor: pointer;
                         }
-    
+
                         .btn-dec {}
-    
+
                         .btn-inc {}
-    
+
                         input {
                             width: 80px;
                             border: 1px solid $grey;
@@ -82,7 +106,7 @@
                             margin: 0 10px;
                         }
                     }
-    
+
                 }
             }
         }
