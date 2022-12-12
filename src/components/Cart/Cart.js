@@ -1,29 +1,52 @@
 import Table from 'react-bootstrap/Table';
 import Container from 'react-bootstrap/Container';
 import "../../scss/Cart.scss";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Button } from "react-bootstrap";
 import { useState } from 'react';
 import img from "../../assets/image.png";
+import { all, deleteItem } from '../../redux/action/payAction';
+import { toast } from 'react-toastify';
 const Cart = () => {
     const data = useSelector(state => state.pay.carts);
     const [dataClone, setDataClone] = useState(data);
-    const [quantity, setQuantity] = useState();
+    const [quantity, setQuantity] = useState(0);
+    const dispatch = useDispatch();
     let total = 0;
     const handlePay = () => {
         setDataClone("");
+        dispatch(all());
+        toast.success('Pay success', {
+            position: "bottom-left",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
     }
     const handleClickBtnDelete = (prod) => {
-        // console.log(prod);
         const dataDelete = dataClone.filter((val, index) => val.id !== prod.id)
         setDataClone(dataDelete);
-        // redux cho cai delete ve rong 
+        dispatch(deleteItem(prod));
+        toast.warn('Delete success', {
+            position: "bottom-left",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
     }
     const handleChangeInput = (event, prod) => {
         const index = dataClone.findIndex((val, index) => val.id === prod.id)
-        console.log(+event.target.value)
         setQuantity(dataClone[index].quantity = +event.target.value);
     }
+    console.log(data)
     return (
         <Container>
             {dataClone && dataClone.length > 0
@@ -33,6 +56,7 @@ const Cart = () => {
                         <thead>
                             <tr>
                                 <th>ID</th>
+                                <th>Image</th>
                                 <th>Quantity</th>
                                 <th>Name</th>
                                 <th>Price</th>
@@ -43,8 +67,14 @@ const Cart = () => {
                             {dataClone && dataClone.length > 0 &&
                                 dataClone.map((val, key) => {
                                     return (
-                                        <tr>
+                                        <tr key={val.id}>
                                             <td>{val.id}</td>
+                                            <td>
+                                                <div className='img-table'>
+                                                    <img src={val.image} />
+                                                </div>
+
+                                            </td>
                                             <td>
                                                 <input className="input-quantity" type="number"
                                                     value={+val.quantity}

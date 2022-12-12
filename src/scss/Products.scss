@@ -4,21 +4,36 @@
 
 .products {
     .container {
-        .cart-icon {
-            cursor: pointer;
-            position: relative;
-
-            .ball {
-                display: block;
-                width: 24px;
-                height: 24px;
-                border-radius: 50%;
-                background-color: #6bc9e2;
-                color: white;
-                position: absolute;
-                top: 0;
-                left: 100%;
-                text-align: center;
+        .header-cart{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            // background-color: red;
+            padding: 10px 0;
+            .search {
+                width: 80%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                input {
+                    padding: 8px 12px;
+                    border: 1px solid $primary;
+                    width: 400px;
+                }
+    
+                button {
+                    padding: 8px 12px;
+                    color: white;
+                    background-color: $primary;
+                    border: 1px solid $primary;
+                    cursor: pointer;
+                    svg{
+                        width: 1.2em;
+                        height: 1.2em;
+                        border: none;
+                    }
+                }
             }
         }
 
